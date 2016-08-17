@@ -212,12 +212,11 @@ def AddContentProtection(options, container, tracks):
             kids.append(kid)
 
     # resolve the default KID and KEY
-    key_info = options.track_key_infos.get(tracks[0].id)
-
-    if key_info:
+    try
+        key_info = options.track_key_infos.get(tracks[0].id)
         default_kid = key_info['kid']
         default_key = key_info['key']
-    else:
+    except AttributeError:
         default_kid = kids[0]
         default_key = None
 
